@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PositionViewDlg" widgetVar="PositionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPositionTitle}">
+            <h:form id="PositionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{positionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPositionLabel_idPosition}"/>
+                        <h:outputText value="#{positionController.selected.idPosition}" title="#{bundle.ViewPositionTitle_idPosition}"/>
+                        <h:outputText value="#{bundle.ViewPositionLabel_latitude}"/>
+                        <h:outputText value="#{positionController.selected.latitude}" title="#{bundle.ViewPositionTitle_latitude}"/>
+                        <h:outputText value="#{bundle.ViewPositionLabel_longitude}"/>
+                        <h:outputText value="#{positionController.selected.longitude}" title="#{bundle.ViewPositionTitle_longitude}"/>
+                        <h:outputText value="#{bundle.ViewPositionLabel_date}"/>
+                        <h:outputText value="#{positionController.selected.date}" title="#{bundle.ViewPositionTitle_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPositionLabel_idUser}"/>
+                        <h:outputText value="#{positionController.selected.idUser}" title="#{bundle.ViewPositionTitle_idUser}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PositionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

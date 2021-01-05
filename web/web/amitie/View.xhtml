@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AmitieViewDlg" widgetVar="AmitieViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAmitieTitle}">
+            <h:form id="AmitieViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{amitieController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAmitieLabel_amitiePK_dateAmitie}"/>
+                        <h:outputText value="#{amitieController.selected.amitiePK.dateAmitie}" title="#{bundle.ViewAmitieTitle_amitiePK_dateAmitie}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAmitieLabel_user}"/>
+                        <h:outputText value="#{amitieController.selected.user}" title="#{bundle.ViewAmitieTitle_user}"/>
+                        <h:outputText value="#{bundle.ViewAmitieLabel_user1}"/>
+                        <h:outputText value="#{amitieController.selected.user1}" title="#{bundle.ViewAmitieTitle_user1}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AmitieViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

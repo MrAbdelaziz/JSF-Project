@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AmitieCreateDlg" widgetVar="AmitieCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAmitieTitle}">
+            <h:form id="AmitieCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{amitieController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAmitieLabel_amitiePK_dateAmitie}" for="amitiePK_dateAmitie" />
+                        <p:calendar id="amitiePK_dateAmitie" pattern="MM/dd/yyyy" value="#{amitieController.selected.amitiePK.dateAmitie}" title="#{bundle.EditAmitieTitle_amitiePK_dateAmitie}" required="true" requiredMessage="#{bundle.EditAmitieRequiredMessage_amitiePK_dateAmitie}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAmitieLabel_user}" for="user" />
+                        <p:selectOneMenu id="user" value="#{amitieController.selected.user}" required="true" requiredMessage="#{bundle.EditAmitieRequiredMessage_user}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="userItem"
+                                           itemValue="#{userItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAmitieLabel_user1}" for="user1" />
+                        <p:selectOneMenu id="user1" value="#{amitieController.selected.user1}" required="true" requiredMessage="#{bundle.EditAmitieRequiredMessage_user1}">
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="user1Item"
+                                           itemValue="#{user1Item}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{amitieController.create}" value="#{bundle.Save}" update="display,:AmitieListForm:datalist,:growl" oncomplete="handleSubmit(args,'AmitieCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AmitieCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

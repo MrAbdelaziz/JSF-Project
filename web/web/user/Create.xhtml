@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UserCreateDlg" widgetVar="UserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUserTitle}">
+            <h:form id="UserCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{userController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUserLabel_idUser}" for="idUser" />
+                        <p:inputText id="idUser" value="#{userController.selected.idUser}" title="#{bundle.CreateUserTitle_idUser}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_idUser}"/>
+                        <p:outputLabel value="#{bundle.CreateUserLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{userController.selected.nom}" title="#{bundle.CreateUserTitle_nom}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.CreateUserLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{userController.selected.prenom}" title="#{bundle.CreateUserTitle_prenom}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_prenom}"/>
+                        <p:outputLabel value="#{bundle.CreateUserLabel_telephone}" for="telephone" />
+                        <p:inputText id="telephone" value="#{userController.selected.telephone}" title="#{bundle.CreateUserTitle_telephone}" required="true" requiredMessage="#{bundle.CreateUserRequiredMessage_telephone}"/>
+                        <p:outputLabel value="#{bundle.CreateUserLabel_dateNaissance}" for="dateNaissance" />
+                        <p:calendar id="dateNaissance" pattern="MM/dd/yyyy" value="#{userController.selected.dateNaissance}" title="#{bundle.EditUserTitle_dateNaissance}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_dateNaissance}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{userController.create}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UserCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
